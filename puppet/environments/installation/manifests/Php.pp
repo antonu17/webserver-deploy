@@ -20,6 +20,7 @@ class my_php(
   php::extension { 'memcache': }
   php::extension { 'apcu': }
   php::extension { 'xdebug': }
+  php::extension { 'curl': }
 
   php::config::setting { 'Date/date.timezone':
     file  => $php_ini,
