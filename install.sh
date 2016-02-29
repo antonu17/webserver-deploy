@@ -11,10 +11,12 @@ ENVIRONMENT="installation"
 MANIFEST="${ENVIRONMENT_PATH}/${ENVIRONMENT}/manifests"
 PUPPET_OPTS="--environmentpath ${ENVIRONMENT_PATH} --environment ${ENVIRONMENT}"
 
-PUPPET_VER=$(${PUPPET_BIN} apply --version)
+PUPPET_VER=$(test -e ${PUPPET_BIN} && ${PUPPET_BIN} apply --version)
 
-apt-get update
-apt-get -y install software-properties-common
+if [ ! -e /usr/bin/add-apt-repository ]; then
+    apt-get update
+    apt-get -y install software-properties-common
+fi
 
 if [[ -z "${PUPPET_VER}" || $(version_gt "4.3.0" "${PUPPET_VER}") ]]; then
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
