@@ -27,30 +27,6 @@ class my_mysql {
         table      => '*.*',
         user       => 'dbaseadmin@%',
       },
-      'dbaseuser@localhost/torbor.*'   => {
-        ensure     => 'present',
-        options    => ['GRANT'],
-        privileges => ['ALL'],
-        table      => 'torbor.*',
-        user       => 'dbaseuser@localhost',
-      },
-      'dbaseuser@localhost/chemical.*' => {
-        ensure     => 'present',
-        options    => ['GRANT'],
-        privileges => ['ALL'],
-        table      => 'chemical.*',
-        user       => 'dbaseuser@localhost',
-      },
-    },
-    databases        => {
-      'torbor'    => {
-        ensure  => 'present',
-        charset => 'utf8',
-      },
-      'chemical'  => {
-        ensure  => 'present',
-        charset => 'utf8',
-      },
     },
     override_options => {
       'mysqld' => {
